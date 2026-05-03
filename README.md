@@ -55,14 +55,6 @@ Short URL is returned
 Accessing it redirects to original URL
 Click count is updated
 
-🏗️ Architecture
-
-graph TD
-    A[User Browser] <--> B[Flask App]
-    B <--> C[Business Logic]
-    C <--> D[(SQLite Database)]
-    B --> E[Docker Container]
-
 🔧 Components
 1. Flask Application (app.py)
 
