@@ -28,23 +28,18 @@ It also supports basic analytics like click tracking and is fully containerized 
 
 ## 💡 How It Works
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant WebApp
-    participant Backend
-    participant Database
+When a user enters a long URL, the application creates a shorter version of it that is easier to share.
 
-    User->>WebApp: Enter Long URL
-    WebApp->>Backend: Send Request
-    Backend->>Backend: Generate Short Code
-    Backend->>Database: Store Mapping
-    Database->>Backend: Confirm Storage
-    Backend->>WebApp: Return Short URL
-    User->>Backend: Access Short URL
-    Backend->>Database: Fetch Original URL
-    Backend->>Backend: Increment Click Count
-    Backend->>User: Redirect to Original URL
+First, the user submits a long URL through the website.
+The Flask backend receives this request and generates a unique short code (for example, abc123).
+
+This short code is then stored in the database along with the original URL and a click count (starting from 0).
+
+After that, the application returns a short link like:
+
+http://localhost:5000/abc123
+
+When someone opens this short link, the application checks the database, finds the original URL, and redirects the user to it. At the same time, it increases the click count to track how many times the link was used.
 
 
 🔄 Workflow
